@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        font-size: 60px;
+        font-weight: bolder;
+        color: rgb(0, 107, 0);
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(171, 255, 93, 0.76);
+        align-items: center;
+    }
+    .Roll{
+        display: flex;
+        align-self: center;
+        position:absolute ;
+        bottom: 20vh;
+        height: 50px;
+        width: 100px;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        background-color: rgba(6, 243, 6, 0.884);
+        border-radius: 12px;
+    }
+    .players{
+        display: flex;
+        position: absolute;
+        bottom: 30vh;
+    }
+    .true{
+        display: flex;
+        background-color: rgba(0, 212, 0, 0.884);
+        height: 250px;
+        width: 250px;
+        border-radius: 30px;
+        margin-inline-end: 20px;
+        box-shadow: 5px 5px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        
+    }
+    .true div{
+        background-color: rgb(217, 255, 5);
+        height: 50px;
+        width: 50px;
+        border-radius: 40px;
+        display: flex;
+        margin:20px;
+        position: relative;
+        bottom: 10px;
+    }
+</style>
+<body>
+    <button class="Roll">ROLL..</button>
+    <h1>DICE_GAME</h1>
+    <div class="players">
+        <div class="fun_1"><div>    </div></div>
+        <div class="fun"><div></div></div>
+        <div class="fun_1"><div></div><div></div></div>
+        <div class="fun"><div></div><div></div></div>
+        <div class="fun_1"><div></div><div></div><div></div></div>
+        <div class="fun"><div></div><div></div><div></div></div>
+        <div class="fun_1"><div></div><div></div><div></div><div></div></div>
+        <div class="fun"><div></div><div></div><div></div><div></div></div>
+        <div class="fun_1"><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="fun"><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="fun_1"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="fun"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <script >
+       document.querySelector('.Roll').addEventListener("click", function () {
+            // Generate random indices
+            var randomIndex_1 = Math.floor(Math.random() * 6);
+            var randomIndex_2 = Math.floor(Math.random() * 6);
+
+            // Remove the "true" class from the elements with class "fun_1" and "fun"
+            var fun_1 = document.querySelector(".fun_1.true");
+            if (fun_1) {
+                fun_1.classList.remove("true");
+            }
+            var fun = document.querySelector(".fun.true");
+            if (fun) {
+                fun.classList.remove("true");
+            }
+
+            // Add the "true" class to the new elements at the random indices
+            document.querySelectorAll(".fun_1")[randomIndex_1].classList.add("true");
+            document.querySelectorAll(".fun")[randomIndex_2].classList.add("true");
+
+            count_1 = document.querySelectorAll(".fun_1.true div").length;
+            count_2 = document.querySelectorAll(".fun.true div").length;
+            if(count_1>count_2){
+                document.querySelector("h1").innerHTML = "player 1 won (" + count_1 + " " + count_2+")";
+            }
+            if(count_1<count_2){
+                document.querySelector("h1").innerHTML = "player 2 won (" + count_1 + " " + count_2+")";
+            }
+            if(count_1===count_2){
+                document.querySelector("h1").innerHTML = "Draw (" + count_1 + " " + count_2+")";
+            }
+        });
+    </script>
+</body>
+</html>
